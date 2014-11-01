@@ -3,5 +3,12 @@ source 'https://rubygems.org'
 
 gem 'rails', '4.1.7'
 gem 'rails-api'
-gem 'spring', :group => :development
 gem 'pg'
+
+group :development do
+  gem 'spring'
+end
+
+group :test, :development do
+  gem 'rspec-rails'
+end
