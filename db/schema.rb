@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141104005912) do
+ActiveRecord::Schema.define(version: 20141101053106) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,22 +34,23 @@ ActiveRecord::Schema.define(version: 20141104005912) do
   create_table "people", force: true do |t|
     t.string   "name"
     t.string   "email"
+    t.string   "org"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "org",        limit: 30
   end
 
   add_index "people", ["email"], name: "index_people_on_email", unique: true, using: :btree
 
-  create_table "project_people", force: true do |t|
+  create_table "permissions", force: true do |t|
     t.integer  "project_id"
     t.integer  "person_id"
+    t.boolean  "write",      default: false, null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "project_people", ["person_id"], name: "index_project_people_on_person_id", using: :btree
-  add_index "project_people", ["project_id"], name: "index_project_people_on_project_id", using: :btree
+  add_index "permissions", ["person_id"], name: "index_permissions_on_person_id", using: :btree
+  add_index "permissions", ["project_id"], name: "index_permissions_on_project_id", using: :btree
 
   create_table "projects", force: true do |t|
     t.string   "name"

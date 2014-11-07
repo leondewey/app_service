@@ -2,7 +2,6 @@ class PeopleController < ApplicationController
 
   def create
     person = Person.new(person_params)
-
     if person.save
       head :created
     else
@@ -46,6 +45,19 @@ class PeopleController < ApplicationController
     end
   end
 
+  def projects
+    person = Person.find_by_id(params[:person_id])
+    if person.present?
+      if person.set_projects(project_params)
+        head :ok
+      else
+        render json: {errors: person.errors.full_messages}, status: :unprocessable_entity
+      end
+    else
+      head :not_found
+    end
+  end
+
 private
   def requested_person
     @requested_person ||= Person.find_by_id(params[:id])
@@ -53,5 +65,9 @@ private
 
   def person_params
     params.require(:person).permit(:name, :email, :org)
+  end
+
+  def project_params
+    params.permit(projects: [:project_id, :write])[:projects]
   end
 end

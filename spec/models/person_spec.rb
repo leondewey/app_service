@@ -17,12 +17,4 @@ describe Person do
     expect(FactoryGirl.create(:person, email: 'john@email.com')).to be_valid
     expect(FactoryGirl.build(:person, email: 'john@email.com')).to_not be_valid
   end
-
-  it "can have many projects" do
-    projects = []
-    2.times do |i|
-      projects << FactoryGirl.create(:project)
-    end
-    expect(FactoryGirl.create(:person, projects: projects)).to be_valid
-  end
 end
