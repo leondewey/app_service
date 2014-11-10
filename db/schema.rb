@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141101053106) do
+ActiveRecord::Schema.define(version: 20141110030245) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,6 +26,7 @@ ActiveRecord::Schema.define(version: 20141101053106) do
     t.text     "config"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "profile"
   end
 
   add_index "apps", ["name"], name: "index_apps_on_name", using: :btree

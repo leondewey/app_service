@@ -11,6 +11,8 @@ Rails.application.routes.draw do
           post :projects, to: 'permissions#projects'
         end
 
+        resources :apps, only: [:create, :update, :destroy, :index, :show], defaults: { format: :json }
+
       end
     end
   end
