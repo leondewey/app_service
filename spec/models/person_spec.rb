@@ -14,7 +14,7 @@ describe Person do
   end
 
   it "does not allow duplicate emails" do
-    expect(FactoryGirl.create(:person, email: 'john@email.com')).to be_valid
-    expect(FactoryGirl.build(:person, email: 'john@email.com')).to_not be_valid
+    person = FactoryGirl.create(:person)
+    expect(FactoryGirl.build(:person, email: person.email)).to_not be_valid
   end
 end

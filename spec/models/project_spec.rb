@@ -10,8 +10,8 @@ describe Project do
   end
 
   it "does not allow duplicate names" do
-    expect(FactoryGirl.create(:project, name: 'Unique Project')).to be_valid
-    expect(FactoryGirl.build(:project, name: 'Unique Project')).to_not be_valid
+    project = FactoryGirl.create(:project)
+    expect(FactoryGirl.build(:project, name: project.name)).to_not be_valid
   end
 
   it "can have many people" do
